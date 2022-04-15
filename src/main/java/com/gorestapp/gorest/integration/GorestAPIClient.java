@@ -12,17 +12,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface GorestAPIClient {
 
     @GetMapping("/users")
-    public UserApiResponse loadUsers();
+    public UserApiResponse loadUsers(@RequestParam("page") Integer page);
 
     @GetMapping("/users")
     public UserApiResponse findUserByEmailAndId(@RequestParam("email") String email, @RequestParam("id") Integer id );
 
     @GetMapping("/posts")
-    public PostsApiResponse loadAllPostByUserId(@RequestParam("user_id")String userId);
+    public PostsApiResponse loadAllPostByUserId(@RequestParam("user_id")String userId,
+                                                @RequestParam("page") Integer page);
 
 
     @GetMapping("/comments")
-    public CommentsApiResponse loadComentsForPost(@RequestParam("post_id") String  post_id);
+    public CommentsApiResponse loadCommentsForPost(@RequestParam("post_id") String postId,
+                                                   @RequestParam("page") Integer page);
 
 
 }
