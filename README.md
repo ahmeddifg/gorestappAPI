@@ -8,7 +8,7 @@ Application Create using ideaj premium
 API usage:
 
 First you need to execute this http://localhost:8881/auth/login to get access token. 
- ==> passing email and the user id
+ ==> passing email and the user id as header parameter
 
 -Now you can use see the posts using the token only
 -users API applied information hiding  
