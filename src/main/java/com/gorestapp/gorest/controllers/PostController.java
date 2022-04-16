@@ -20,10 +20,9 @@ public class PostController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> loadAllPost(@RequestHeader(value = "token",required = true) String token,
-                                         @RequestParam(name="page", required = false) Integer page){
-        AuthKey authResponse = new AuthKey(AesEncryption.decrypt(token,"myKey2213"));
-        return ResponseEntity.ok(this.postSerice.postsApiResponseList(page,AuthUtil.getUserid(authResponse.getAccessToken())));
+    public ResponseEntity<?> loadAllPost(@RequestParam(name="page", required = false) Integer page){
+
+        return ResponseEntity.ok(this.postSerice.postsApiResponseList(page));
     }
 
 

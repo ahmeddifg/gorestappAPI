@@ -17,6 +17,12 @@ public interface GorestAPIClient {
     @GetMapping("/users")
     public UserApiResponse findUserByEmailAndId(@RequestParam("email") String email, @RequestParam("id") Integer id );
 
+    @GetMapping("/users")
+    public UserApiResponse findUserByEmail(@RequestParam("email") String email);
+
+    @GetMapping("/users")
+    public UserApiResponse findUserByName(@RequestParam("name") String name);
+
     @GetMapping("/posts")
     public PostsApiResponse loadAllPostByUserId(@RequestParam("user_id")String userId,
                                                 @RequestParam("page") Integer page);

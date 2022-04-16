@@ -1,8 +1,11 @@
 package com.gorestapp.gorest.services;
 
+import com.gorestapp.gorest.authconfig.UserAuthAccount;
 import com.gorestapp.gorest.integration.GorestAPIClient;
 import com.gorestapp.gorest.integration.responseModel.CommentsApiResponse;
 import com.gorestapp.gorest.model.response.CommentViewModel;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
