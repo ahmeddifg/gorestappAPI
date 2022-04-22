@@ -1,6 +1,6 @@
 package com.gorestapp.gorest.services;
 
-import com.gorestapp.gorest.authconfig.UserAuthAccount;
+import com.gorestapp.gorest.entities.UserAuthAccount;
 import com.gorestapp.gorest.integration.GorestAPIClient;
 import com.gorestapp.gorest.integration.responseModel.CommentsApiResponse;
 import com.gorestapp.gorest.model.response.CommentViewModel;
@@ -21,7 +21,10 @@ public class CommentService {
     }
 
     public List<CommentViewModel> loadCommentForPost(String postId,Integer page) {
-        CommentsApiResponse commentsApiResponse = this.gorestAPIClient.loadCommentsForPost(postId,page);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserAuthAccount currentUser = (UserAuthAccount) authentication.getPrincipal();
+
+        CommentsApiResponse commentsApiResponse = this.gorestAPIClient.loadCommentsForPost(postId,currentUser.getGorestId(),page);
         if (commentsApiResponse != null && commentsApiResponse.getData() != null) {
             List<CommentViewModel> commentViewModelList = commentsApiResponse.getData().stream().
                     map(item -> new CommentViewModel(item)).collect(Collectors.toList());

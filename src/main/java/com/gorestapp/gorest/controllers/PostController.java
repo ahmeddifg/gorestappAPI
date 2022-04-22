@@ -1,5 +1,6 @@
 package com.gorestapp.gorest.controllers;
 
+import com.gorestapp.gorest.model.request.PostRequest;
 import com.gorestapp.gorest.model.response.AuthKey;
 import com.gorestapp.gorest.services.PostSerice;
 import com.gorestapp.gorest.utils.AesEncryption;
@@ -21,8 +22,12 @@ public class PostController {
 
     @GetMapping("/all")
     public ResponseEntity<?> loadAllPost(@RequestParam(name="page", required = false) Integer page){
-
         return ResponseEntity.ok(this.postSerice.postsApiResponseList(page));
+    }
+
+    @PostMapping
+    public ResponseEntity<?> loadAllPost(@RequestBody PostRequest postRequest ){
+        return ResponseEntity.ok(this.postSerice.sendPost(postRequest));
     }
 
 

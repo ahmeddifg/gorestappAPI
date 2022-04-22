@@ -27,15 +27,4 @@ public class UserService {
                 map(item -> new UserViewModel(item)).collect(Collectors.toList());
         return userViewModels;
     }
-
-
-    public AuthKey login(String email, Integer userId) {
-        String accessToken = null;
-        UserApiResponse userApiResponse = this.gorestAPIClient.findUserByEmailAndId(email, userId);
-        if (userApiResponse != null && userApiResponse.getData().size() > 0) {
-            accessToken = AesEncryption.encrypt(userApiResponse.getData().get(0).getEmail() + "(|-|)" +
-                    userApiResponse.getData().get(0).getId(), "myKey2213");
-            return new AuthKey(accessToken);
-        } else throw new LoginException();
-    }
 }

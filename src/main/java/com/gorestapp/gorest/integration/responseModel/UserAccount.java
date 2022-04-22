@@ -1,11 +1,9 @@
 package com.gorestapp.gorest.integration.responseModel;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gorestapp.gorest.entities.UserAuthAccount;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Collection;
 
 @Data
 @AllArgsConstructor
@@ -16,4 +14,11 @@ public class UserAccount {
     private String email;
     private String gender;
     private String status;
+
+    public UserAccount(UserAuthAccount userAuthAccount){
+        this.email= userAuthAccount.getEmail();
+        this.name= userAuthAccount.getUsername();
+        this.gender= userAuthAccount.getGender().name();
+        this.status="active";
+    }
 }

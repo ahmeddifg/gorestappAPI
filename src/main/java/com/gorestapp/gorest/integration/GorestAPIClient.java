@@ -1,12 +1,10 @@
 package com.gorestapp.gorest.integration;
 
-import com.gorestapp.gorest.integration.responseModel.CommentsApiResponse;
-import com.gorestapp.gorest.integration.responseModel.PostsApiResponse;
-import com.gorestapp.gorest.integration.responseModel.UserApiResponse;
+import com.gorestapp.gorest.integration.responseModel.*;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @FeignClient(name = "GorestAPIClient", url = "${gorestservice.path}")
 public interface GorestAPIClient {
@@ -24,13 +22,17 @@ public interface GorestAPIClient {
     public UserApiResponse findUserByName(@RequestParam("name") String name);
 
     @GetMapping("/posts")
-    public PostsApiResponse loadAllPostByUserId(@RequestParam("user_id")String userId,
-                                                @RequestParam("page") Integer page);
+    public PostsApiResponse getUserPosts(@RequestParam("user_id") Integer user_id);
 
 
     @GetMapping("/comments")
     public CommentsApiResponse loadCommentsForPost(@RequestParam("post_id") String postId,
+                                                   @RequestParam("user_id") Integer user_id,
                                                    @RequestParam("page") Integer page);
 
+    @PostMapping("/users")
+    RegisterUserAccountResponse saveUserAccount(@RequestBody UserAccount userAccount, @RequestHeader("Authorization") String token);
 
+    @PostMapping("/posts")
+    PostApiSendResponse saveUserPost(@RequestBody Post post, @RequestHeader("Authorization") String token);
 }
