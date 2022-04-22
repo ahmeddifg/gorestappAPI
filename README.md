@@ -4,6 +4,9 @@ Application Create using idea premium,
 
 Run instructions:
 
+++ please read my comments on each API in controllers folder
+
+
 1- clone the project into local machine
 
 2- open project root directory and locate docker-compose.yaml file contain a mongo database image
