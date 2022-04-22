@@ -17,8 +17,7 @@ Run instructions:
 
 5- open postman and start the flow, please find the postman collection at postmanfolder  
 
-    - Register account: 'please use an email already exists at gorest to avoid 304 gorest issue '
-      your registered information will be saved in local mongo DB, and this account record is linked to gorest user information.
+    - Register account:your registered information will be saved in local mongo DB, and this account record is linked to gorest user information.
 
     - login with email and password
 
@@ -27,3 +26,5 @@ Run instructions:
     - review my post.
 
     - review comments.
+    
+    - view users
