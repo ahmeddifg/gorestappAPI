@@ -1,17 +1,25 @@
 Hello,
 
-Application Create using ideaj premium 
+Application Create using idea premium,
 
-- you add the project and run. or you you can run it using maven
-- I provided the postman collection for all APIs.
+Run instructions:
 
-API usage:
+1- clone the project into local machine
 
-First you need to execute this http://localhost:8881/auth/login to get access token. 
- ==> passing email and the user id as header parameter
+2- open project root directory and locate docker-compose.yaml file
 
--Now you can use see the posts using the token only ==> pass a token header param
+3- execute:  docker-compose up 
 
+4- run the project as spring boot project.
 
--users API applied information hiding  
+5- open postman and start the flow 
 
+    - Register account: 'please use an email already exists at gorest'
+
+    - login with email and password
+
+    - send a new Post.
+
+    - review my posts 
+
+    - review comments.
