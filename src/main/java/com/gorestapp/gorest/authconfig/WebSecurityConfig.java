@@ -30,8 +30,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        // configure AuthenticationManager so that it knows from where to load
-        // user for matching credentials
         // Use BCryptPasswordEncoder
         auth.userDetailsService(jwtUserDetailsService);
     }
@@ -45,12 +43,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable().cors().and()
-                // dont authenticate this particular request
                 .authorizeRequests().antMatchers("/auth/login","/auth/register").permitAll().
-                // all other requests need to be authenticate
                 and().authorizeRequests().anyRequest().authenticated().and().
-                // make sure we use stateless session; session won't be used to
-                // store user's state.
                 sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

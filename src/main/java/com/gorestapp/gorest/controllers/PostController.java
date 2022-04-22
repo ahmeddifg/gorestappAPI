@@ -20,11 +20,21 @@ public class PostController {
         this.postSerice = postSerice;
     }
 
+
+    // load all posts
     @GetMapping("/all")
     public ResponseEntity<?> loadAllPost(@RequestParam(name="page", required = false) Integer page){
-        return ResponseEntity.ok(this.postSerice.postsApiResponseList(page));
+        return ResponseEntity.ok(this.postSerice.allPostsApiResponseList(page));
     }
 
+    // Load only my posts
+    @GetMapping("/myposts")
+    public ResponseEntity<?> loadMyPost(@RequestParam(name="page", required = false) Integer page){
+        return ResponseEntity.ok(this.postSerice.myPostsApiResponseList(page));
+    }
+
+    // when try to make a new post make sure the user already have one post.
+    // otherwise gorest will send response with status 302 !!
     @PostMapping
     public ResponseEntity<?> loadAllPost(@RequestBody PostRequest postRequest ){
         return ResponseEntity.ok(this.postSerice.sendPost(postRequest));

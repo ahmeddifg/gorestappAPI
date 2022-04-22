@@ -17,6 +17,14 @@ public class CommentsController {
         this.commentService = commentService;
     }
 
+
+    // Load all comments
+    @GetMapping("/")
+    public ResponseEntity<?> loadCommentsForPost(@RequestParam(name="page", required = false) Integer page){
+        return ResponseEntity.ok(this.commentService.loadAllComments(page));
+    }
+
+    // Get all comments for a post
     @GetMapping("/{postid}")
     public ResponseEntity<?> loadCommentsForPost(@PathVariable(value = "postid", required = true) String postid,
                                                  @RequestParam(name="page", required = false) Integer page){

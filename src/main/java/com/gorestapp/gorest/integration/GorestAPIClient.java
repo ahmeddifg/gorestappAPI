@@ -22,13 +22,19 @@ public interface GorestAPIClient {
     public UserApiResponse findUserByName(@RequestParam("name") String name);
 
     @GetMapping("/posts")
-    public PostsApiResponse getUserPosts(@RequestParam("user_id") Integer user_id);
+    public PostsApiResponse getUserPosts(@RequestParam("user_id") Integer user_id,
+                                         @RequestParam("page") Integer page);
+
+    @GetMapping("/posts")
+    public PostsApiResponse getAllPost(@RequestParam("page") Integer page);
 
 
     @GetMapping("/comments")
     public CommentsApiResponse loadCommentsForPost(@RequestParam("post_id") String postId,
-                                                   @RequestParam("user_id") Integer user_id,
                                                    @RequestParam("page") Integer page);
+
+    @GetMapping("/comments")
+    public CommentsApiResponse loadAllComments(@RequestParam("page") Integer page);
 
     @PostMapping("/users")
     RegisterUserAccountResponse saveUserAccount(@RequestBody UserAccount userAccount, @RequestHeader("Authorization") String token);

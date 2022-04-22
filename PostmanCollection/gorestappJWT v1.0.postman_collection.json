@@ -1,0 +1,207 @@
+{
+	"info": {
+		"_postman_id": "ea3fac7d-649c-49f4-9ce3-2cd2928d4018",
+		"name": "gorestappJWT v1.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8881/auth/register -- register new user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"misspra\",\r\n    \"password\":\"123456789\",\r\n    \"email\":\"miss_prajapat_balamani@boyle.org\",\r\n    \"gender\":\"female\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8881/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8881",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8881/auth/login-- Login",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "email",
+						"value": "pothuvaal_anwesha@king.org",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "123456789",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8881/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8881",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8881/users/all -- load users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtaXNzcHJhIiwiZXhwIjoxNjUwNjgwNzM2LCJpYXQiOjE2NTA2NjI3MzZ9.ynBUTwL6H5nloI2TVglNeRAXhV5cgQ7Esvj9i_VJAicGIXGm1bHai0Q2Cv0hcXxRz33O-KSx6VV9xknSiuK97Q",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8881/users/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8881",
+					"path": [
+						"users",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8881/posts/myposts  load my posts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtaXNzcHJhIiwiZXhwIjoxNjUwNjgwNzM2LCJpYXQiOjE2NTA2NjI3MzZ9.ynBUTwL6H5nloI2TVglNeRAXhV5cgQ7Esvj9i_VJAicGIXGm1bHai0Q2Cv0hcXxRz33O-KSx6VV9xknSiuK97Q",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8881/posts/myposts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8881",
+					"path": [
+						"posts",
+						"myposts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8881/posts/all  all posts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtaXNzcHJhIiwiZXhwIjoxNjUwNjgwNzM2LCJpYXQiOjE2NTA2NjI3MzZ9.ynBUTwL6H5nloI2TVglNeRAXhV5cgQ7Esvj9i_VJAicGIXGm1bHai0Q2Cv0hcXxRz33O-KSx6VV9xknSiuK97Q",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8881/posts/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8881",
+					"path": [
+						"posts",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8881/posts -- send a post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtaXNzcHJhIiwiZXhwIjoxNjUwNjgwNzM2LCJpYXQiOjE2NTA2NjI3MzZ9.ynBUTwL6H5nloI2TVglNeRAXhV5cgQ7Esvj9i_VJAicGIXGm1bHai0Q2Cv0hcXxRz33O-KSx6VV9xknSiuK97Q",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"hello\",\r\n    \"body\":\"Great work!!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8881/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8881",
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8881/comments/1903",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtaXNzcHJhIiwiZXhwIjoxNjUwNjgwNzM2LCJpYXQiOjE2NTA2NjI3MzZ9.ynBUTwL6H5nloI2TVglNeRAXhV5cgQ7Esvj9i_VJAicGIXGm1bHai0Q2Cv0hcXxRz33O-KSx6VV9xknSiuK97Q",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8881/comments/1614",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8881",
+					"path": [
+						"comments",
+						"1614"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -19,6 +19,7 @@ public class AuthController {
 
 
 
+    //accept user credentials and verify with local mongo DB ==>> 'UserAuthAccounts' mongo collection
     @GetMapping(value = "/login")
     public ResponseEntity<JwtResponse> login(@RequestHeader(name = "email", required = true) String email,
                                              @RequestHeader(name = "password", required = true) String password) throws Exception {
@@ -30,6 +31,13 @@ public class AuthController {
         return ResponseEntity.ok( new JwtResponse(jwtUserDetailsService.generateTokenFromUserDetails(userAuthAccount)));
     }
 
+    // First i check of the username/email is listed at gorest
+    // then will register a new user in with encrypted password on mongo database,
+    // the user ID at gorest is linked to the user record at my mongo DB
+
+    // NOTE: i already implemented the add user scenario with gorest (check GorestAPIClient.saveUserAccount)
+    // But when i tried to get the same user gorest.io returning the result with 302 status
+    // Or the post action went successfuly but no data returned when i try to get the same user by ID
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> register(@RequestBody @Validated RegisterRequest empAccount) {
         return ResponseEntity.ok(this.jwtUserDetailsService.registerNewUser(empAccount));

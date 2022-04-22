@@ -21,10 +21,17 @@ public class CommentService {
     }
 
     public List<CommentViewModel> loadCommentForPost(String postId,Integer page) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserAuthAccount currentUser = (UserAuthAccount) authentication.getPrincipal();
+        CommentsApiResponse commentsApiResponse = this.gorestAPIClient.loadCommentsForPost(postId,page);
+        if (commentsApiResponse != null && commentsApiResponse.getData() != null) {
+            List<CommentViewModel> commentViewModelList = commentsApiResponse.getData().stream().
+                    map(item -> new CommentViewModel(item)).collect(Collectors.toList());
+            return commentViewModelList;
+        } else return null;
 
-        CommentsApiResponse commentsApiResponse = this.gorestAPIClient.loadCommentsForPost(postId,currentUser.getGorestId(),page);
+    }
+
+    public List<CommentViewModel> loadAllComments(Integer page) {
+        CommentsApiResponse commentsApiResponse = this.gorestAPIClient.loadAllComments(page);
         if (commentsApiResponse != null && commentsApiResponse.getData() != null) {
             List<CommentViewModel> commentViewModelList = commentsApiResponse.getData().stream().
                     map(item -> new CommentViewModel(item)).collect(Collectors.toList());

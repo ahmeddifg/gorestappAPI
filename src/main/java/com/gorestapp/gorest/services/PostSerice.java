@@ -32,11 +32,20 @@ public class PostSerice {
         this.gorestAPIClient = gorestAPIClient;
     }
 
-    public List<PostViewModel> postsApiResponseList(Integer page) {
+    public List<PostViewModel> allPostsApiResponseList(Integer page) {
+        PostsApiResponse posts = this.gorestAPIClient.getAllPost(page);
+        if (posts.getData().size() > 0) {
+            List<PostViewModel> postViewModels = posts.getData().stream().
+                    map(item -> new PostViewModel(item)).collect(Collectors.toList());
+            return postViewModels;
+        } else throw new PostNotFoundException();
+    }
+
+    public List<PostViewModel> myPostsApiResponseList(Integer page) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserAuthAccount currentUser = (UserAuthAccount) authentication.getPrincipal();
 
-        PostsApiResponse posts = this.gorestAPIClient.getUserPosts(currentUser.getGorestId());
+        PostsApiResponse posts = this.gorestAPIClient.getUserPosts(currentUser.getGorestId(),page);
         if (posts.getData().size() > 0) {
             List<PostViewModel> postViewModels = posts.getData().stream().
             map(item -> new PostViewModel(item)).collect(Collectors.toList());
